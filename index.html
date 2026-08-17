@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Im sorry❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Dancing Script', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#020005] text-white overflow-hidden h-screen w-screen flex items-center justify-center relative selection:bg-pink-500 selection:text-white">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-20%] left-[-20%] w-[600px] h-[600px] bg-pink-500/10 rounded-full blur-[130px]"></div>
+        <div class="absolute bottom-[-20%] right-[-20%] w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[130px]"></div>
+        <div id="particles" class="absolute inset-0"></div>
+    </div>
+    <canvas id="c" class="absolute inset-0 w-full h-full z-10 pointer-events-none hidden-state"></canvas>
+    <div id="question-screen" class="z-20 relative flex flex-col items-center text-center p-6 max-w-md w-full mx-4">
+        <div id="cute-heart" class="text-7xl mb-6 filter drop-shadow-[0_0_15px_rgba(255,45,85,0.6)]">💗</div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-8 bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent">
+            Will you accept this as my apology?
+        </h1>
+        <div class="flex items-center justify-center gap-6 w-full min-h-[60px]">
+            <button id="yesBtn" class="px-8 py-3.5 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 rounded-full font-semibold text-lg shadow-[0_10px_25px_rgba(255,45,85,0.4)] hover:scale-105 active:scale-95 transition-all w-32 border border-pink-400/20">
+                Yes
+            </button>
+            <button id="noBtn" class="px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full font-semibold text-lg text-white/80 transition-all w-32">
+                No
+            </button>
+        </div>
+    </div>
+    <div id="climax-screen" class="absolute inset-0 z-20 flex flex-col items-center justify-center hidden-state">
+        <div id="love-bg-text" class="absolute text-center select-none z-0 transform scale-75 opacity-0">
+            <h2 class="text-6xl sm:text-8xl font-black uppercase tracking-wider bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 bg-clip-text text-transparent">
+                I Love you!!
+            </h2>
+            <h2 class="text-4xl sm:text-5xl font-serif text-pink-300 mt-2">
+               Forever yearning for you
+            </h2>
+        </div>
+        <div id="envelope-trigger" class="absolute bottom-24 flex flex-col items-center gap-3 cursor-pointer z-30 transform scale-0 group">
+            <div class="envelope-icon relative w-20 h-12 bg-gradient-to-br from-pink-400 to-rose-500 rounded-lg shadow-[0_10px_20px_rgba(255,45,85,0.3)] transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
+                <div class="absolute top-0 left-0 w-full h-0 border-l-[40px] border-l-transparent border-r-[40px] border-r-transparent border-t-[24px] border-t-pink-300 z-20 origin-top transition-transform duration-500 group-hover:rotateX-180"></div>
+                <div class="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-xs z-30 drop-shadow-md animate-pulse">❤️</div>
+            </div>
+            <span class="text-xs uppercase tracking-[0.2em] text-pink-300 font-bold animate-pulse">Open my Secret letter for you</span>
+        </div>
+    </div>
+    <div id="letter-overlay" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center hidden-state">
+        <div id="letter-box" class="w-[340px] sm:w-[420px] bg-white text-gray-900 rounded-3xl p-6 sm:p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] border border-pink-100 flex flex-col relative transform translate-y-32 scale-95">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 bg-rose-500 rounded-full flex items-center justify-center text-white text-base border-2 border-white shadow-md">
+                ❤️
+            </div>
+            <h3 class="text-3xl font-serif text-rose-600 mb-4 text-center border-b border-rose-100 pb-2">For You 💗</h3>
+            <div id="letter-text" class="space-y-3 font-sans text-sm sm:text-base text-gray-700 leading-relaxed min-h-[120px]"></div>
+            <div id="letter-signature" class="mt-6 text-right border-t border-rose-100 pt-4 opacity-0 transform translate-y-4">
+                <span class="text-xs text-gray-400 block">Forever Yours,</span>
+                <span class="text-3xl font-serif text-rose-600 block mt-1">Vanzey</span>
+            </div>
+            <button id="closeBtn" class="mt-6 px-6 py-2.5 bg-rose-50 hover:bg-rose-100 border border-rose-100 rounded-full text-rose-600 font-semibold text-sm transition-all hover:scale-105 w-full">
+                Close Letter
+            </button>
+        </div>
+    </div>
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/05/16/audio_03d9db3073.mp3" type="audio/mpeg">
+    </audio>
+    <canvas id="confetti-canvas" class="absolute inset-0 pointer-events-none z-40"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
